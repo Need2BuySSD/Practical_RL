@@ -92,6 +92,7 @@ class BasicTranslationModel(nn.Module):
         :return: output tokens int32[batch,time] and
                  log-probabilities of all tokens at each tick, [batch,time,n_tokens]
         """
+        max_len = max_len or inp.shape[0]*2
         device = next(self.parameters()).device
         batch_size = inp.shape[0]
         bos = torch.tensor(
